@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "Call-Tracking Assistant",
+  "description": "The most popular movies and TV shows in your   default tab. Includes ratings, summaries and the ability to watch trailers.",
+  "version": "1",
+  "author": "Jake Prins",
+  "browser_action": {
+    "default_popup": "newtab.html"
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "MacCtrl+Shift+F"
+      },
+      "description": "Opens newtab.html"
+    }
+  },
+  "permissions": ["activeTab", "webNavigation"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  }
+}
