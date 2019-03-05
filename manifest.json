@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Call-Tracking Assistant",
-  "description": "The most popular movies and TV shows in your   default tab. Includes ratings, summaries and the ability to watch trailers.",
+  "description": "Assists in Call Tracking for Rain Retail Tech Support",
   "version": "1",
   "author": "Jake Prins",
   "browser_action": {
@@ -16,6 +16,14 @@
       "description": "Opens newtab.html"
     }
   },
+  "content_scripts": [
+    {
+      "js": ["background.js"],
+      "matches": [
+        "https://docs.google.com/forms/d/e/1FAIpQLScFVg5sYWwkVbCZHx1nCY6hKhkgMSpU2h9KjV_HdGHY-0OGVQ/viewform"
+      ]
+    }
+  ],
   "permissions": ["activeTab", "webNavigation"],
   "background": {
     "scripts": ["background.js"],
