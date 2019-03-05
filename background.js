@@ -22,12 +22,12 @@ function getFormData() {
     }
   });
   // chrome.runtime.sendMessage({ data: [...data], greeting: "hello" });
-  console.log(chrome.commands)
-  var port = chrome.runtime.connect({ name: "dataTransfer" });
-  port.postMessage({ data: data });
-  port.onMessage.addListener(function(msg) {
-    console.log(msg);
-  });
+  
+  // var port = chrome.runtime.connect({ name: "dataTransfer" });
+  // port.postMessage({ data: data });
+  // port.onMessage.addListener(function(msg) {
+  //   console.log(msg);
+  // });
 }
 
 submitButton.addEventListener("click", () => getFormData());
