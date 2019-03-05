@@ -13,7 +13,8 @@
         "default": "Ctrl+Shift+F",
         "mac": "MacCtrl+Shift+F"
       },
-      "description": "Opens newtab.html"
+      "description": "Opens newtab.html",
+      "global": true
     }
   },
   "content_scripts": [
@@ -24,9 +25,8 @@
       ]
     }
   ],
-  "permissions": ["activeTab", "webNavigation"],
+  "permissions": ["activeTab"],
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "scripts": ["background.js"]
   }
 }
