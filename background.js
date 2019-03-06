@@ -7,27 +7,27 @@ const radios = [...document.querySelectorAll(".exportLabelWrapper")];
 let data = [];
 
 function getFormData() {
-  data = [];
+  chrome.storage.local.get(["responses"], function(result) {
+    data = result.responses;
+  });
+  let temp = [];
   options.forEach((option) => {
     if (option.classList.contains("isSelected")) {
       let content = option.querySelector("content").innerHTML;
-      data.push(content);
+      temp.push(content);
     }
   });
   radios.forEach((radio) => {
     let selectedRadio = radio.querySelector(".isChecked");
     if (selectedRadio != null) {
       let content = selectedRadio.dataset.value;
-      data.push(content);
+      temp.push(content);
     }
   });
-  // chrome.runtime.sendMessage({ data: [...data], greeting: "hello" });
-  
-  // var port = chrome.runtime.connect({ name: "dataTransfer" });
-  // port.postMessage({ data: data });
-  // port.onMessage.addListener(function(msg) {
-  //   console.log(msg);
-  // });
+  data.push(temp);
+  chrome.storage.local.set({ responses: data }, function() {
+    console.log("posted value to storage");
+  });
 }
 
 submitButton.addEventListener("click", () => getFormData());
