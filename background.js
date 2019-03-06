@@ -2,22 +2,29 @@ const submitButton = document.querySelector(".exportOverlay");
 const submitButton2 = document.querySelector(
   ".quantumWizButtonPaperbuttonLabel"
 );
+const submitButton3 = document.querySelector(
+  ".quantumWizButtonPaperbuttonContent"
+);
 const options = [...document.querySelectorAll(".exportOption")];
 const radios = [...document.querySelectorAll(".exportLabelWrapper")];
 let data = [];
 
 function getFormData() {
   chrome.storage.local.get(["responses"], function(result) {
-    data = result.responses;
+    console.log("HERE: " + result.responses);
+    if (result.responses) {
+      data = result.responses;
+    }
   });
+  console.log(data);
   let temp = [];
-  options.forEach((option) => {
+  options.forEach(option => {
     if (option.classList.contains("isSelected")) {
       let content = option.querySelector("content").innerHTML;
       temp.push(content);
     }
   });
-  radios.forEach((radio) => {
+  radios.forEach(radio => {
     let selectedRadio = radio.querySelector(".isChecked");
     if (selectedRadio != null) {
       let content = selectedRadio.dataset.value;
@@ -30,5 +37,12 @@ function getFormData() {
   });
 }
 
-submitButton.addEventListener("click", () => getFormData());
-submitButton2.addEventListener("click", () => getFormData());
+submitButton.addEventListener("click", () => {
+  getFormData();
+});
+submitButton2.addEventListener("click", () => {
+  getFormData();
+});
+submitButton3.addEventListener("click", () => {
+  getFormData();
+});
