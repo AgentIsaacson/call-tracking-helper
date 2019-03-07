@@ -7,13 +7,14 @@ const submitButton3 = document.querySelector(
 );
 const options = [...document.querySelectorAll(".exportOption")];
 const radios = [...document.querySelectorAll(".exportLabelWrapper")];
-let data = [];
 
 function getFormData() {
   chrome.storage.local.get(["responses"], function(result) {
     console.log("HERE: " + result.responses);
     if (result.responses) {
       data = result.responses;
+    } else {
+      data = [];
     }
   });
   console.log(data);
