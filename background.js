@@ -9,29 +9,27 @@ const options = [...document.querySelectorAll(".exportOption")];
 const radios = [...document.querySelectorAll(".exportLabelWrapper")];
 let data = [];
 function getFormData() {
-  chrome.storage.local.get(["responses"], function(result) {
-    if (result.responses != undefined) {
-      data = result.responses;
+  let data = [];
+  options.forEach(option => {
+    if (option.classList.contains("isSelected")) {
+      let content = option.querySelector("content").innerHTML;
+      data.push(content);
     }
-    let temp = [];
-    options.forEach(option => {
-      if (option.classList.contains("isSelected")) {
-        let content = option.querySelector("content").innerHTML;
-        temp.push(content);
-      }
-    });
-    radios.forEach(radio => {
-      let selectedRadio = radio.querySelector(".isChecked");
-      if (selectedRadio != null) {
-        let content = selectedRadio.dataset.value;
-        temp.push(content);
-      }
-    });
-    data.push(temp);
+  });
+  radios.forEach(radio => {
+    let selectedRadio = radio.querySelector(".isChecked");
+    if (selectedRadio != null) {
+      let content = selectedRadio.dataset.value;
+      data.push(content);
+    }
+  });
+  data.push(new Date());
+  chrome.storage.local.get(["responses"], function(result) {
     chrome.storage.local.set({ responses: data }, function() {
       console.log("posted value to storage");
     });
   });
+  console.log(data);
 }
 
 submitButton.addEventListener("click", () => {
