@@ -1,3 +1,13 @@
 body {
-    width: 95vw;
+  width: 95vw;
+  text-align: center;
 }
+
+.table {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+

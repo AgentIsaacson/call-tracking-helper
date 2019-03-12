@@ -1,45 +1,34 @@
 const submitButton = document.querySelector(".exportOverlay");
-// const submitButton2 = document.querySelector(
-//   ".quantumWizButtonPaperbuttonLabel"
-// );
 const submitButton3 = document.querySelector(
   ".quantumWizButtonPaperbuttonContent"
 );
-const options = [...document.querySelectorAll(".exportOption")];
+const options = [...document.querySelectorAll(".exportOption")].splice(-1, 1);
 const radios = [...document.querySelectorAll(".exportLabelWrapper")];
 let data = [];
-function getFormData() {
-  chrome.storage.local.get(["responses"], function(result) {
-    if (result.responses != undefined) {
-      data = result.responses;
+
+function pushFormData() {
+  data = [];
+  options.forEach((option) => {
+    if (option.classList.contains("isSelected")) {
+      let content = option.querySelector("content").innerHTML;
+      data.push(content);
     }
-    let temp = [];
-    options.forEach(option => {
-      if (option.classList.contains("isSelected")) {
-        let content = option.querySelector("content").innerHTML;
-        temp.push(content);
-      }
-    });
-    radios.forEach(radio => {
-      let selectedRadio = radio.querySelector(".isChecked");
-      if (selectedRadio != null) {
-        let content = selectedRadio.dataset.value;
-        temp.push(content);
-      }
-    });
-    data.push(temp);
-    chrome.storage.local.set({ responses: data }, function() {
-      console.log("posted value to storage");
-    });
+  });
+  radios.forEach((radio) => {
+    let selectedRadio = radio.querySelector(".isChecked");
+    if (selectedRadio != null) {
+      let content = selectedRadio.dataset.value;
+      data.push(content);
+    }
+  });
+  chrome.storage.local.set({ responses: data }, function() {
+    console.log("done");
   });
 }
 
 submitButton.addEventListener("click", () => {
-  getFormData();
+  pushFormData();
 });
-// submitButton2.addEventListener("click", () => {
-//   getFormData();
-// });
 submitButton3.addEventListener("click", () => {
-  getFormData();
+  pushFormData();
 });
