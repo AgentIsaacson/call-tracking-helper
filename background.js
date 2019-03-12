@@ -5,8 +5,13 @@ const submitButton3 = document.querySelector(
 const options = [...document.querySelectorAll(".exportOption")].splice(-1, 1);
 const radios = [...document.querySelectorAll(".exportLabelWrapper")];
 let data = [];
+let counter;
 function pushFormData() {
-  let now = `${new Date().getHours()}:${new Date().getMinutes()>=10 ? new Date().getMinutes() : '0' + new Date().getMinutes()}`
+  let now = `${new Date().getHours()}:${
+    new Date().getMinutes() >= 10
+      ? new Date().getMinutes()
+      : "0" + new Date().getMinutes()
+  }`;
   let data = [];
   options.forEach(option => {
     if (option.classList.contains("isSelected")) {
@@ -23,12 +28,16 @@ function pushFormData() {
   });
   data.push(now);
   console.log(data);
-  chrome.storage.local.get(["responses"], function(result) {
-    chrome.storage.local.set({ responses: data }, function() {
-      console.log("posted value to storage");
-    });
+  chrome.storage.local.set({ responses: data }, function() {
+    console.log("posted value to storage");
   });
-  console.log(now);
+  chrome.storage.local.get(["counter"], function(result) {
+    let counter = result.counter ? result.counter : 0;
+    return counter;
+  });
+  console.log("counter: " + counter);
+  counter++;
+  console.log("counter: " + counter);
 }
 
 submitButton.addEventListener("click", () => {
