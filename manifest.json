@@ -19,14 +19,20 @@
   },
   "content_scripts": [
     {
-      "js": ["background.js"],
+      "js": ["form.js"],
       "matches": [
         "https://docs.google.com/forms/d/e/1FAIpQLScFVg5sYWwkVbCZHx1nCY6hKhkgMSpU2h9KjV_HdGHY-0OGVQ/viewform"
+      ]
+    },
+    {
+      "js": ["ring-central.js"],
+      "matches": [
+        "https://home-c15.incontact.com/inContact/Default.aspx"
       ]
     }
   ],
   "permissions": ["activeTab", "storage"],
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["form.js", "ring-central.js"]
   }
 }
