@@ -2,6 +2,7 @@ let text = document.querySelector("p");
 let data = [];
 let body = document.querySelector("body");
 let table = document.querySelector(".table");
+let submissionCount = document.querySelector(".submissionCount");
 
 const populateData = () => {
   chrome.storage.local.get(["responses"], function(result) {
@@ -23,6 +24,9 @@ const populateData = () => {
     } else {
       table.remove(document.querySelectorAll(".tableItem"));
     }
+  });
+  chrome.storage.local.get(["counter"], function(result) {
+    submissionCount.innerHTML = result.counter ? result.counter : 0;
   });
 };
 

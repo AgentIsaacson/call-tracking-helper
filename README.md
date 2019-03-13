@@ -1,7 +1,6 @@
 Call-Tracking Assistant for Rain Retail Customer Support Champions
 
 TO-DO
-add counter for submissions submitted
 show last 3 submissions
 
 PHASE 2
