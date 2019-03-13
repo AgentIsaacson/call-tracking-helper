@@ -2,7 +2,6 @@ const submitButton1 = document.querySelector(".exportOverlay");
 const submitButton2 = document.querySelector(
   ".quantumWizButtonPaperbuttonContent"
 );
-const options = [...document.querySelectorAll(".exportOption")].splice(-1, 1);
 const radios = [...document.querySelectorAll(".exportLabelWrapper")];
 let data = [];
 function pushFormData() {
@@ -16,13 +15,7 @@ function pushFormData() {
       : "0" + new Date().getMinutes()
   }${new Date().getHours() <= 12 ? "am" : "pm"}`;
   let temp = [];
-  options.forEach((option) => {
-    if (option.classList.contains("isSelected")) {
-      let content = option.querySelector("content").innerHTML;
-      temp.push(content);
-    }
-  });
-  radios.forEach((radio) => {
+  radios.forEach(radio => {
     let selectedRadio = radio.querySelector(".isChecked");
     if (selectedRadio != null) {
       let content = selectedRadio.dataset.value;
