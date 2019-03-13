@@ -3,18 +3,17 @@ body {
   text-align: center;
 }
 
-.table {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-
-}
-
 .table-headings {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   font-weight: 700;
   text-decoration: underline;
   padding-bottom: 0;
+}
+
+.listItem {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 p {

@@ -15,23 +15,27 @@ function pushFormData() {
       ? new Date().getMinutes()
       : "0" + new Date().getMinutes()
   }${new Date().getHours() <= 12 ? "am" : "pm"}`;
-  let data = [];
+  let temp = [];
   options.forEach((option) => {
     if (option.classList.contains("isSelected")) {
       let content = option.querySelector("content").innerHTML;
-      data.push(content);
+      temp.push(content);
     }
   });
   radios.forEach((radio) => {
     let selectedRadio = radio.querySelector(".isChecked");
     if (selectedRadio != null) {
       let content = selectedRadio.dataset.value;
-      data.push(content);
+      temp.push(content);
     }
   });
-  data.push(now);
-  chrome.storage.local.set({ responses: data }, function() {
-    console.log("posted value to storage");
+  temp.push(now);
+  chrome.storage.local.get(["responses"], function(result) {
+    let data = result.responses ? result.responses : [];
+    data.push(temp);
+    chrome.storage.local.set({ responses: data }, function() {
+      console.log("posted value to storage");
+    });
   });
   chrome.storage.local.get(["counter"], function(result) {
     let counter = result.counter ? result.counter : 0;

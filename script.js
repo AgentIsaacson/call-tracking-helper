@@ -6,23 +6,35 @@ let submissionCount = document.querySelector(".submissionCount");
 
 const populateData = () => {
   chrome.storage.local.get(["responses"], function(result) {
-    console.log(result.responses);
+    let newTable = document.createElement("DIV");
+    // All responses together
     if (result.responses != undefined) {
-      result.responses.forEach((response) => {
+      let responseData = result.responses;
+      while(responseData.length > 3) {
+        responseData.shift();
+        console.log(responseData)
+      }
+      responseData.forEach((response) => {
+        // Individual responses
         let listItem = document.createElement("P");
         listItem.classList.add("listItem");
         String(response)
           .split(",")
           .forEach((item) => {
+            // individual items
             let tableItem = document.createElement("DIV");
             tableItem.innerHTML = item;
             listItem.appendChild(tableItem);
             tableItem.classList.add("tableItem");
           });
-        table.appendChild(listItem);
+        newTable.appendChild(listItem);
       });
+      body.removeChild(table);
+      newTable.classList.add("table");
+      body.appendChild(newTable);
     } else {
-      table.remove(document.querySelectorAll(".tableItem"));
+      document.querySelector(".table").remove();
+      chrome.storage.local.clear();
     }
   });
   chrome.storage.local.get(["counter"], function(result) {
@@ -34,5 +46,6 @@ body.onload = populateData();
 
 document.querySelector("#clearResponses").addEventListener("click", () => {
   chrome.storage.local.clear();
+  document.querySelector(".table").remove();
   populateData();
 });
