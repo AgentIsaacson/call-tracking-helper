@@ -3,6 +3,7 @@ let data = [];
 let body = document.querySelector("body");
 let table = document.querySelector(".table");
 let submissionCount = document.querySelector(".submissionCount");
+let callCount = document.querySelector('.callCount')
 
 const populateData = () => {
   chrome.storage.local.get(["responses"], function(result) {
@@ -39,6 +40,9 @@ const populateData = () => {
   });
   chrome.storage.local.get(["counter"], function(result) {
     submissionCount.innerHTML = result.counter ? result.counter : 0;
+  });
+  chrome.storage.local.get(["callsTracked"], function(result) {
+    callCount.innerHTML = result.callsTracked ? result.callsTracked : 0;
   });
 };
 
