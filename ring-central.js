@@ -5,8 +5,9 @@ let tempStatus1 = "";
 let tempStatus2 = "";
 let callsTracked;
 chrome.storage.local.get(["callsTracked"], function(result) {
-  callsTracked = result.callsTracked != undefined ? result.callsTracked : 0;
+  callsTracked = result.callsTracked ? result.callsTracked : 0;
 });
+
 setInterval(() => {
   let people = document.querySelectorAll(".slick-row");
   let personData = "";
@@ -30,6 +31,9 @@ setInterval(() => {
     }
   });
   chrome.storage.local.get(["callsTracked"], function(result) {
+    if (result.callsTracked === -1) {
+      callsTracked = 0;
+    }
     console.log("localstorage: " + result.callsTracked);
     console.log("To Push" + callsTracked);
     chrome.storage.local.set({ callsTracked: callsTracked }, function() {
