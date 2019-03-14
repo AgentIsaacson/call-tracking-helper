@@ -26,16 +26,12 @@ function pushFormData() {
   chrome.storage.local.get(["responses"], function(result) {
     let data = result.responses ? result.responses : [];
     data.push(temp);
-    chrome.storage.local.set({ responses: data }, function() {
-      console.log("posted value to storage");
-    });
+    chrome.storage.local.set({ responses: data }, function() {});
   });
   chrome.storage.local.get(["counter"], function(result) {
     let counter = result.counter ? result.counter : 0;
     counter++;
-    chrome.storage.local.set({ counter: counter }, function() {
-      console.log("Ticked Counter" + counter);
-    });
+    chrome.storage.local.set({ counter: counter }, function() {});
   });
 }
 

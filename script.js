@@ -13,7 +13,6 @@ const populateData = () => {
       let responseData = result.responses;
       while (responseData.length > 3) {
         responseData.shift();
-        console.log(responseData);
       }
       responseData.forEach(response => {
         // Individual responses
@@ -50,9 +49,7 @@ body.onload = populateData();
 
 document.querySelector("#clearResponses").addEventListener("click", () => {
   chrome.storage.local.clear();
-  chrome.storage.local.set({ callsTracked: -1 }, function() {
-    console.log("complete");
-  });
+  chrome.storage.local.set({ callsTracked: -1 }, function() {});
   if (document.querySelector(".table")) {
     document.querySelector(".table").remove();
   }

@@ -34,10 +34,6 @@ setInterval(() => {
     if (result.callsTracked === -1) {
       callsTracked = 0;
     }
-    console.log("localstorage: " + result.callsTracked);
-    console.log("To Push" + callsTracked);
-    chrome.storage.local.set({ callsTracked: callsTracked }, function() {
-      console.log(callsTracked);
-    });
+    chrome.storage.local.set({ callsTracked: callsTracked }, function() {});
   });
 }, 1000);
