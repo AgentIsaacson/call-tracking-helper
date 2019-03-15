@@ -1,6 +1,6 @@
 const name = document.querySelector(".titleText").innerText;
 let shouldTrackCall = false;
-const callEndStatus = "Meeting";
+const callEndStatus = "Wrap Up";
 let tempStatus1 = "";
 let tempStatus2 = "";
 let callsTracked;
