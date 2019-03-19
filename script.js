@@ -11,7 +11,7 @@ const populateData = () => {
     // All responses together
     if (result.responses != undefined) {
       let responseData = result.responses;
-      while (responseData.length > 3) {
+      while (responseData.length > 5) {
         responseData.shift();
       }
       responseData.forEach((response) => {
