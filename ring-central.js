@@ -5,11 +5,11 @@ setTimeout(() => {
   let tempStatus1 = "";
   let tempStatus2 = "";
   let callsTracked;
+  setInterval(() => {
   chrome.storage.local.get(["callsTracked"], function(result) {
     callsTracked = result.callsTracked ? result.callsTracked : 0;
   });
 
-  setInterval(() => {
     let people = document.querySelectorAll(".slick-row");
     let personData = "";
     people.forEach(person => {
