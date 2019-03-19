@@ -2,7 +2,7 @@ Call-Tracking Assistant for Rain Retail Customer Support Champions
 
 TO-DO
 BUGS
-Log out/log in can't read rep name
+Testing - Log out/log in can't read rep name
 spam/voicemail calls don't have wrap up status
 
 FEATURES
