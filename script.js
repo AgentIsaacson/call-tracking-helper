@@ -14,13 +14,13 @@ const populateData = () => {
       while (responseData.length > 3) {
         responseData.shift();
       }
-      responseData.forEach(response => {
+      responseData.forEach((response) => {
         // Individual responses
         let listItem = document.createElement("P");
         listItem.classList.add("listItem");
         String(response)
           .split(",")
-          .forEach(item => {
+          .forEach((item) => {
             // individual items
             let tableItem = document.createElement("DIV");
             tableItem.innerHTML = item;
@@ -33,7 +33,8 @@ const populateData = () => {
       newTable.classList.add("table");
       body.appendChild(newTable);
     } else {
-      document.querySelector(".table").remove();
+      if (document.querySelector(".table"))
+        document.querySelector(".table").remove();
       chrome.storage.local.clear();
     }
   });
@@ -54,4 +55,19 @@ document.querySelector("#clearResponses").addEventListener("click", () => {
     document.querySelector(".table").remove();
   }
   populateData();
+});
+
+document.querySelector("#addCall").addEventListener("click", () => {
+  let adjustedCalls = parseInt(callCount.innerHTML) + 1;
+  chrome.storage.local.set({ callsTracked: adjustedCalls }, function() {
+    callCount.innerHTML = adjustedCalls;
+  });
+});
+
+document.querySelector("#subtractCall").addEventListener("click", () => {
+  let adjustedCalls =
+    parseInt(callCount.innerHTML) >= 1 ? parseInt(callCount.innerHTML) - 1 : 0;
+  chrome.storage.local.set({ callsTracked: adjustedCalls }, function() {
+    callCount.innerHTML = adjustedCalls;
+  });
 });

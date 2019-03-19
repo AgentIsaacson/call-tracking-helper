@@ -28,3 +28,14 @@ h3 {
   display:grid;
   grid-template-columns: 1fr 1fr;
 }
+
+.callNumbers {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.callCount {
+  margin: 0 15px;
+}
