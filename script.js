@@ -14,13 +14,13 @@ const populateData = () => {
       while (responseData.length > 5) {
         responseData.shift();
       }
-      responseData.forEach((response) => {
+      responseData.forEach(response => {
         // Individual responses
         let listItem = document.createElement("P");
         listItem.classList.add("listItem");
         String(response)
           .split(",")
-          .forEach((item) => {
+          .forEach(item => {
             // individual items
             let tableItem = document.createElement("DIV");
             tableItem.innerHTML = item;
@@ -38,15 +38,16 @@ const populateData = () => {
       chrome.storage.local.clear();
     }
   });
+};
+setInterval(() => {
+  
+}, 1000);
   chrome.storage.local.get(["counter"], function(result) {
     submissionCount.innerHTML = result.counter ? result.counter : 0;
   });
   chrome.storage.local.get(["callsTracked"], function(result) {
     callCount.innerHTML = result.callsTracked ? result.callsTracked : 0;
   });
-};
-
-body.onload = populateData();
 
 document.querySelector("#clearResponses").addEventListener("click", () => {
   chrome.storage.local.clear();
@@ -71,3 +72,5 @@ document.querySelector("#subtractCall").addEventListener("click", () => {
     callCount.innerHTML = adjustedCalls;
   });
 });
+
+body.onload = populateData();
