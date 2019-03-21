@@ -18,9 +18,9 @@ setTimeout(() => {
             if (
               tempStatus1 !== tempStatus2 &&
               (personData[1].includes(callEndStatus) ||
-                ((tempStatus1.includes("Inbound") ||
-                  tempStatus1.includes("Outbound")) &&
-                  tempStatus2.includes("Available"))) &&
+                ((tempStatus2.includes("Inbound") ||
+                  tempStatus2.includes("Outbound")) &&
+                  tempStatus1.includes("Available"))) &&
               shouldTrackCall
             ) {
               callsTracked++;
@@ -32,7 +32,6 @@ setTimeout(() => {
           }
         }
       });
-      console.log(callsTracked);
       chrome.storage.local.set({ callsTracked: callsTracked }, function() {});
     });
   }, 1000);
