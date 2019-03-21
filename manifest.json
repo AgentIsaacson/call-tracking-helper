@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Call-Tracking Assistant",
   "description": "Assists in Call Tracking for Rain Retail Tech Support",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "author": "Caleb Isaacson",
   "browser_action": {
     "default_popup": "newtab.html"
@@ -16,13 +16,14 @@
     },
     {
       "js": ["ring-central.js"],
-      "matches": [
-        "https://home-c15.incontact.com/inContact/Default.aspx"
-      ]
+      "matches": ["https://home-c15.incontact.com/inContact/Default.aspx"]
     }
   ],
   "permissions": ["activeTab", "storage"],
   "background": {
     "scripts": ["form.js", "ring-central.js"]
+  },
+  "icons": {
+    "48": "raindrop.png"
   }
 }
