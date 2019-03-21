@@ -11,6 +11,9 @@ const populateData = () => {
   });
   chrome.storage.local.get(["callsTracked"], function(result) {
     callCount.innerHTML = result.callsTracked ? result.callsTracked : 0;
+    if(result.callsTracked === -1){
+      callCount.innerHTML = 0;
+    }
   });
   chrome.storage.local.get(["responses"], function(result) {
     let newTable = document.createElement("DIV");
