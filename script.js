@@ -38,7 +38,6 @@ const populateData = () => {
     } else {
       if (document.querySelector(".table")) {
         document.querySelector(".table").remove();
-        // chrome.storage.local.clear(); // THIS IS THE PROBLEM
       }
     }
   });

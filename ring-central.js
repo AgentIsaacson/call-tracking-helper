@@ -23,6 +23,7 @@ setTimeout(() => {
                   tempStatus2.includes("Available"))) &&
               shouldTrackCall
             ) {
+              callsTracked++;
               shouldTrackCall = false;
             } else if (!personData[1].includes(callEndStatus)) {
               shouldTrackCall = true;
