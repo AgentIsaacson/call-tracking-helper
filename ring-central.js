@@ -7,11 +7,7 @@ setTimeout(() => {
   let callsTracked;
   setInterval(() => {
     chrome.storage.local.get(["callsTracked"], function(result) {
-      callsTracked =
-        // !result.callsTracked || 
-        result.callsTracked === -1
-          ? 0
-          : result.callsTracked;
+      callsTracked = result.callsTracked === -1 ? 0 : result.callsTracked;
       let people = document.querySelectorAll(".slick-row");
       let personData = "";
       people.forEach(person => {
@@ -35,11 +31,8 @@ setTimeout(() => {
           }
         }
       });
-      console.log(callsTracked)
-      chrome.storage.local.set(
-        { callsTracked: callsTracked },
-        function() {}
-      );
+      console.log(callsTracked);
+      chrome.storage.local.set({ callsTracked: callsTracked }, function() {});
     });
   }, 1000);
 }, 4000);
