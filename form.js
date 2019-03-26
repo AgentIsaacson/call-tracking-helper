@@ -1,3 +1,5 @@
+console.log("start");
+
 const submitButton1 = document.querySelector(".exportOverlay");
 const submitButton2 = document.querySelector(
   ".quantumWizButtonPaperbuttonContent"
@@ -15,7 +17,7 @@ function pushFormData() {
       : "0" + new Date().getMinutes()
   }${new Date().getHours() <= 12 ? "am" : "pm"}`;
   let temp = [];
-  radios.forEach(radio => {
+  radios.forEach((radio) => {
     let selectedRadio = radio.querySelector(".isChecked");
     if (selectedRadio != null) {
       let content = selectedRadio.dataset.value;
@@ -36,8 +38,10 @@ function pushFormData() {
 }
 
 submitButton1.addEventListener("click", () => {
+  console.log("working");
   pushFormData();
 });
 submitButton2.addEventListener("click", () => {
+  console.log("working");
   pushFormData();
 });

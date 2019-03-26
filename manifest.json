@@ -11,7 +11,7 @@
     {
       "js": ["form.js"],
       "matches": [
-        "https://docs.google.com/forms/d/e/1FAIpQLScFVg5sYWwkVbCZHx1nCY6hKhkgMSpU2h9KjV_HdGHY-0OGVQ/viewform"
+        "*://docs.google.com/forms/d/e/*"
       ]
     },
     {
@@ -19,7 +19,7 @@
       "matches": ["https://home-c15.incontact.com/inContact/Default.aspx"]
     }
   ],
-  "permissions": ["activeTab", "storage"],
+  "permissions": ["activeTab", "storage", "tabs"],
   "background": {
     "scripts": ["form.js", "ring-central.js"]
   },
